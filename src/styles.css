@@ -581,11 +581,12 @@ main.is-page{padding-bottom:84px}
 
 /* restrained crossfade for hash-route changes (native API with CSS fallback) */
 #smooth{view-transition-name:route-content;animation:none}
-::view-transition-old(route-content){animation:route-out .18s ease both}
-::view-transition-new(route-content){animation:route-in .32s var(--ease) both}
-@keyframes route-out{to{opacity:0;transform:translateY(-5px);filter:blur(1px)}}
-@keyframes route-in{from{opacity:0;transform:translateY(9px);filter:blur(1px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-@supports not (view-transition-name:route-content){#smooth{animation:pgIn .36s var(--ease) both}}
+::view-transition-old(route-content){animation:route-out .4s cubic-bezier(.4,0,.2,1) both}
+::view-transition-new(route-content){animation:route-in .75s var(--ease) .08s both}
+@keyframes route-out{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-28px) scale(.975)}}
+@keyframes route-in{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+@supports not (view-transition-name:route-content){#smooth{animation:route-fallback .7s var(--ease) both}}
+@keyframes route-fallback{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
 @media (prefers-reduced-motion:reduce){::view-transition-old(route-content),::view-transition-new(route-content){animation:none!important}#smooth{animation:none!important}}
 
 /* Contact page: refined contact block and compact icon links */
