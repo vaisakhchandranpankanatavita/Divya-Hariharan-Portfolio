@@ -938,3 +938,10 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
   .page .yr{line-height:.8;margin-bottom:-2px}
   .page .xrow h3{margin-top:0}
 }
+/* inner pages: grey title colour; Experience has less space between the title bar and the first rule */
+.page .sh h2,.page .contact h2{color:#A9A9A9}
+@media (max-width:620px){
+  #experience{padding-top:calc(var(--ph) + 6px)}
+}
+/* inner pages: every title is one colour (no muted highlight on the emphasised word) */
+.page h2 em,.page .sh h2 em{color:inherit}
