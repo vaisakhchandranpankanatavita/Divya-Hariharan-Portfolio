@@ -1103,3 +1103,24 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
 /* phone number is a tel: link; looks like the rest of the card text, underlines on hover */
 .page .contact .vc-tel{color:inherit;text-decoration:none;justify-self:start;border-bottom:1px solid transparent;transition:border-color .3s}
 .page .contact .vc-tel:hover,.page .contact .vc-tel:focus-visible{border-color:#c2ab89}
+
+/* mobile Safari fix: the front face was showing through the flipped back. Each face gets its own
+   3D layer, the rounded corners are clipped with clip-path (overflow:hidden breaks backface in WebKit),
+   and the prefixed properties are set. */
+.page .contact .vc-inner{-webkit-transform-style:preserve-3d;transform-style:preserve-3d}
+.page .contact .vc-face{overflow:visible;clip-path:inset(0 round 12px);-webkit-clip-path:inset(0 round 12px);-webkit-backface-visibility:hidden;backface-visibility:hidden;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.page .contact .vc-front{-webkit-transform:rotateY(0deg) translateZ(0);transform:rotateY(0deg) translateZ(0)}
+.page .contact .vc-back{-webkit-transform:rotateY(180deg) translateZ(0);transform:rotateY(180deg) translateZ(0)}
+.page .contact .vc-scene{-webkit-perspective:1600px;perspective:1600px}
+
+/* phones: the contact page fits the screen and does not scroll. The card height is worked out from
+   the phone's own height (100svh) minus the fixed header, the heading, the hint and the bottom nav. */
+@media (max-width:760px){
+  html:has(#contact),body:has(#contact){overflow:hidden;height:100%;overscroll-behavior:none}
+  main.is-page:has(#contact){height:100svh;padding-bottom:0;overflow:hidden}
+  .page .contact{padding-bottom:0}
+  .page .contact .wrap{min-height:0;height:100%}
+  .page .contact .vc-wrap{flex:none;margin-top:14px;padding-bottom:0;align-content:start;justify-items:center}
+  .page .contact .vc-scene{--cardH:clamp(280px,calc(100svh - var(--ph) - 250px),460px);height:var(--cardH);width:min(100%,calc(var(--cardH) / 1.3));aspect-ratio:auto}
+  .page .contact .vc-hint{margin-top:12px}
+}
