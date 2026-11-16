@@ -977,8 +977,14 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
 .page .contact .vc-wrap{flex:1;display:grid;justify-items:center;align-content:center;margin-top:clamp(24px,3vw,40px);padding-bottom:clamp(24px,3vw,40px)}
 .page .contact .vc-scene{position:relative;width:min(100%,760px);aspect-ratio:1.75/1;perspective:1600px}
 .page .contact .vc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.page .contact .vc-scene:hover .vc-inner,.page .contact .vc-scene:focus-within .vc-inner{transform:rotateY(180deg)}
-.page .contact .vc-scene:has(.vc-soc:hover) .vc-inner,.page .contact .vc-scene:has(.vc-soc:focus-within) .vc-inner{transform:none}
+/* flip is driven by a click/tap (the .is-flipped class), not by hover */
+.page .contact .vc-scene{cursor:pointer;border-radius:12px;outline:none}
+.page .contact .vc-scene.is-flipped .vc-inner{transform:rotateY(180deg)}
+.page .contact .vc-scene:focus-visible{box-shadow:0 0 0 2px #c2ab89}
+.page .contact .vc-hint{margin:18px 0 0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#a39d91;text-align:center;user-select:none}
+.page .contact .vc-hint-icon{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid rgba(194,171,137,.5);color:#c2ab89;font-size:13px;letter-spacing:0;text-transform:none;animation:vc-hint-pulse 2.4s ease-in-out infinite}
+@keyframes vc-hint-pulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.12);opacity:1}}
+@media (prefers-reduced-motion:reduce){.page .contact .vc-hint-icon{animation:none}}
 .page .contact .vc-face{position:absolute;inset:0;box-sizing:border-box;margin:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid rgba(255,255,255,.08)}
 
 /* front: matte black, champagne hairline */
@@ -1058,4 +1064,38 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
   .bnav::-webkit-scrollbar{display:none}
   .bnav>*{flex:0 0 auto;white-space:nowrap}
   .bnav a:not(.btn){font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+}
+
+/* contact card: fully responsive. Sizes scale with the card's own width (container units),
+   so the front and the flipped back fit at any phone or desktop width without overlapping. */
+.page .contact .vc-scene{container-type:inline-size}
+.page .contact .vc-front,.page .contact .vc-back{padding:clamp(18px,7cqi,50px);gap:clamp(10px,3.5cqi,22px)}
+.page .contact .vc-front::before{left:clamp(18px,7cqi,50px);top:clamp(18px,7cqi,50px);width:clamp(28px,11cqi,44px)}
+.page .contact .vc-back::before{right:clamp(18px,7cqi,50px);top:clamp(18px,7cqi,50px);width:clamp(28px,11cqi,44px)}
+.page .contact .vc-top,.page .contact .vc-bottom{max-width:60%}
+.page .contact .vc-kicker{font-size:clamp(22px,9cqi,48px);line-height:1.05}
+.page .contact .vc-title{font-size:clamp(12px,4.6cqi,19px);margin-top:clamp(6px,2.6cqi,14px);line-height:1.45}
+.page .contact .vc-bottom{gap:clamp(3px,1.2cqi,6px)}
+.page .contact .vc-mail{font-size:clamp(13px,5.2cqi,22px);word-break:normal;overflow-wrap:anywhere}
+.page .contact .vc-line{font-size:clamp(12px,4.4cqi,20px)}
+.page .contact .vc-soc{margin-top:clamp(8px,3.2cqi,16px);gap:clamp(6px,2.4cqi,12px)}
+.page .contact .vc-soc a{width:clamp(30px,10.5cqi,40px);height:clamp(30px,10.5cqi,40px)}
+.page .contact .vc-soc svg{width:clamp(14px,5cqi,19px);height:clamp(14px,5cqi,19px)}
+.page .contact .vc-photo{height:88%}
+.page .contact .vc-eyebrow{font-size:clamp(9px,2.9cqi,11px)}
+.page .contact .vc-dl{gap:clamp(8px,3.2cqi,18px)}
+.page .contact .vc-dl dt{font-size:clamp(9px,2.9cqi,11px)}
+.page .contact .vc-dl dd{font-size:clamp(14px,5.6cqi,24px);line-height:1.25}
+.page .contact .vc-stats{grid-template-columns:repeat(4,minmax(0,1fr));padding-top:clamp(10px,3.6cqi,18px);row-gap:clamp(8px,3cqi,14px)}
+.page .contact .vc-stats>div{padding:0 clamp(6px,2cqi,14px);min-width:0}
+.page .contact .vc-stats b{font-size:clamp(20px,7.6cqi,34px)}
+.page .contact .vc-stats span{font-size:clamp(9px,3.1cqi,12px);line-height:1.3;overflow-wrap:anywhere}
+@media (max-width:520px){
+  .page .contact .vc-scene{aspect-ratio:1/1.3}
+  .page .contact .vc-photo{top:clamp(12px,4cqi,18px);bottom:auto;right:0;height:40%}
+  .page .contact .vc-top{max-width:60%;margin-top:clamp(4px,2cqi,12px)}
+  .page .contact .vc-bottom{max-width:none}
+  .page .contact .vc-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .page .contact .vc-stats>div:nth-child(odd){padding-left:0;border-left:0}
+  .page .contact .vc-stats>div:nth-child(even){border-left:1px solid rgba(26,25,22,.12)}
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { EMAIL, HIGHLIGHTS, LANGUAGES, PHONE, SOCIALS } from '../data'
 import photo from '../assets/photo.webp'
 import SectionHead from './SectionHead'
@@ -13,12 +14,25 @@ function SocialIcon({ label }: { label: string }) {
 }
 
 export default function Contact() {
+  const [flipped, setFlipped] = useState(false)
+  const toggle = () => setFlipped(f => !f)
+  const onKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle() }
+  }
   return (
     <section className="contact" id="contact">
       <div className="wrap">
         <SectionHead flush watermark="Hello" title={<>Let’s <em>Connect.</em></>} />
         <Reveal className="vc-wrap">
-          <div className="vc-scene">
+          <div
+            className={`vc-scene${flipped ? ' is-flipped' : ''}`}
+            role="button"
+            tabIndex={0}
+            aria-pressed={flipped}
+            aria-label="Contact card. Press to flip and see more details."
+            onClick={toggle}
+            onKeyDown={onKey}
+          >
             <div className="vc-inner">
               <article className="vc-face vc-front" aria-label="Divya Hariharan contact card">
                 <img className="vc-photo" src={photo} alt="" width={690} height={815} />
@@ -29,7 +43,7 @@ export default function Contact() {
                 <div className="vc-bottom">
                   <a className="vc-mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
                   <span className="vc-line">{PHONE}</span>
-                  <ul className="vc-soc" aria-label="Profiles">
+                  <ul className="vc-soc" aria-label="Profiles" onClick={e => e.stopPropagation()} onKeyDown={e => e.stopPropagation()}>
                     {SOCIALS.map(s => (
                       <li key={s.label}>
                         <a href={s.href} target="_blank" rel="noopener noreferrer" title={s.href} aria-label={s.label}><SocialIcon label={s.label} /></a>
@@ -52,6 +66,10 @@ export default function Contact() {
               </div>
             </div>
           </div>
+          <p className="vc-hint" aria-hidden="true">
+            <span className="vc-hint-icon">↻</span>
+            {flipped ? 'Tap the card to flip back' : 'Tap the card to flip'}
+          </p>
         </Reveal>
       </div>
     </section>
