@@ -71,7 +71,7 @@ export default function About() {
         <div className="ab-grid">
           {BOOKS.map(book => (
             <article key={book.title}>
-              <h3>{book.href ? <a href={book.href} target="_blank" rel="noopener noreferrer">{book.title} <span aria-hidden="true">↗</span></a> : book.title}</h3>
+              <h3>{book.href ? <a href={book.href} target="_blank" rel="noopener noreferrer">{book.title}</a> : book.title}</h3>
               <p>{book.detail}</p>
             </article>
           ))}

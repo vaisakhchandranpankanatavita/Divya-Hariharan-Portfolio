@@ -37,7 +37,7 @@ header.nav .wrap{display:flex;align-items:center;justify-content:space-between;h
 h1{font-weight:800;font-size:clamp(64px,10.8vw,156px);line-height:.92}
 h1 .ln{display:block;will-change:transform}
 h2{font-weight:800;font-size:clamp(56px,8.6vw,120px);line-height:.94}
-.wm{position:absolute;left:0;right:0;top:-.28em;font-family:var(--head);font-weight:800;font-size:clamp(120px,24vw,360px);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.07);white-space:nowrap;pointer-events:none;user-select:none}
+.wm{position:absolute;left:0;right:0;top:-.28em;font-family:var(--head);font-weight:800;font-size:clamp(120px,24vw,360px);line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.04);white-space:nowrap;pointer-events:none;user-select:none}
 
 /* hero */
 .hero{min-height:100svh;padding:150px 0 70px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
@@ -468,7 +468,7 @@ a,button,[role="tab"],.sc-in,.sc-list li,.xrow,.next,.bnav a,.hero .hnav a,.menu
 /* inner pages: the title block is a fixed header bar (same blur and hairline as the homepage nav).
    It stays put on every inner page while the content scrolls beneath it. */
 :root{--ph:clamp(92px,10vw,116px)}
-main.is-page .page .sh{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--ph);margin:0;padding:0 max(28px,calc((100vw - var(--wrap,1240px)) / 2));display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:rgba(10,10,10,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+main.is-page .page .sh{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--ph);margin:0;padding:0 max(28px,calc((100vw - var(--wrap,1240px)) / 2));display:flex;flex-direction:column;justify-content:center;background:rgba(10,10,10,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 main.is-page .page .sh h2{margin:0}
 main.is-page .page .sh .eyebrow{display:none}
 main.is-page .page section:first-child{padding-top:calc(var(--ph) + clamp(24px,3vw,40px))}

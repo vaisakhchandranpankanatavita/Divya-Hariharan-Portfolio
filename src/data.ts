@@ -48,7 +48,7 @@ export const WORK = [
 ]
 
 export const JOBS = [
-  { year: '2019', range: '2019 — Present', company: 'Al Bayan College', role: 'English Literature Lecturer · Muscat, Oman', pill: 'Coordinator, General Requirement Unit · 2023–24',
+  { year: '2019', range: '2019 — Present', company: 'Al Bayan College', role: 'English Literature Lecturer · Muscat, Oman (Coordinator, General Requirement Unit · 2023–24)',
     bullets: ['Edits the college newsletter Bayan Post and coordinates curriculum to OAAAQA accreditation standards.', 'Supports international programme applications and institutional assessment documentation (ISA).', 'Prepares operational plans, action plans, risk registers, semester reports and annual reviews for the General Requirement Unit.', 'Delivers training in communication, academic writing and soft skills; supports students through the Writing Support Centre.', 'Coordinates registration, enrolment, advising, orientation and performance reviews, using Moodle, Turnitin and multimedia tools.', 'Serves on the Examination Committee, College Development Council and Research & Innovation Office.'] },
   { year: '2017', range: '2017 — 2019', company: 'Listing Maniac', role: 'Editor · Online broadcasting firm, Kochi',
     bullets: ['Edited freelance stories and articles and wrote headlines and subheads.', 'Authored articles of national and international significance on WordPress.'] },

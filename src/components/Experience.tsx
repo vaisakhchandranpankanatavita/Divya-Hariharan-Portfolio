@@ -13,7 +13,6 @@ export default function Experience() {
             <div>
               <h3>{j.company}</h3>
               <p className="t">{j.role}</p>
-              {j.pill && <span className="pill">{j.pill}</span>}
               <ul>{j.bullets.map(b => <li key={b}>{b}</li>)}</ul>
             </div>
           </Reveal>
