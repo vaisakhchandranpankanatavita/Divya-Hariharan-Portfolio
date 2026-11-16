@@ -1014,13 +1014,16 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
 .page .contact .vc-cta{margin-top:32px;justify-self:center}
 
 @media (max-width:520px){
-  .page .contact .vc-scene{aspect-ratio:1/1.1}
+  .page .contact .vc-scene{aspect-ratio:1/1.3}
   .page .contact .vc-front,.page .contact .vc-back{padding:24px}
   .page .contact .vc-front::before,.page .contact .vc-back::before{left:24px;right:auto;top:24px}
   .page .contact .vc-back::before{left:auto;right:24px}
-  .page .contact .vc-photo{top:auto;bottom:6px;right:-6px;height:50%}
-  .page .contact .vc-top{max-width:62%;margin-top:14px}
+  .page .contact .vc-photo{top:14px;bottom:auto;right:0;height:42%}
+  .page .contact .vc-top{max-width:58%;margin-top:14px}
   .page .contact .vc-bottom{max-width:none}
+  .page .contact .vc-cta{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+  .page .contact .vc-cta .btn{justify-content:center;text-align:center;white-space:nowrap}
+  .page .contact .vc-cta .btn:last-child{grid-column:1 / -1}
   .page .contact .vc-kicker{font-size:26px}
   .page .contact .vc-title{font-size:14px;margin-top:10px}
   .page .contact .vc-mail{font-size:15px;word-break:normal;overflow-wrap:anywhere}
