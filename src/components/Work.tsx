@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { STATS, WORK } from '../data'
+import { WORK } from '../data'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
 import patent from '../assets/work/patent.webp'
@@ -22,11 +22,7 @@ export default function Work() {
   return (
     <section id="work" className="showcase">
       <div className="wrap">
-        <SectionHead watermark="Work" eyebrow="Selected work" title={<>Research that <em>travels.</em></>} lead="Patents, peer-reviewed chapters, conference papers and awards, drawn from seven years of teaching English literature." />
-
-        <Reveal className="sc-stats">
-          {STATS.map(s => <div key={s.label}><b>{s.value}</b><small>{s.label}</small></div>)}
-        </Reveal>
+        <SectionHead title={<>Research that <em>travels.</em></>} />
 
         <div className="sc-filter" role="tablist" aria-label="Filter work">
           {FILTERS.map(x => (

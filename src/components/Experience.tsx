@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <section id="experience">
       <div className="wrap">
-        <SectionHead watermark="Career" eyebrow="02 / Experience" title="Experience" />
+        <SectionHead watermark="Career" title="Experience" />
         {JOBS.map(j => (
           <Reveal className="xrow" key={j.company}>
             <div className="yr">{j.year}<small>{j.range}</small></div>
