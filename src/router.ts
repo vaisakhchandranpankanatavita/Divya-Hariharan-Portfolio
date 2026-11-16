@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 export type Route = 'home' | 'work' | 'experience' | 'about' | 'contact'
 const ROUTES: Route[] = ['home', 'work', 'experience', 'about', 'contact']
@@ -15,10 +16,14 @@ export function useRoute() {
     const on = () => {
       const next = read()
       if (next === route) return
-      const update = () => { scrollTo(0, 0); setRoute(next) }
-      const doc = document as Document & { startViewTransition?: (callback: () => void) => unknown }
-      if (doc.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) doc.startViewTransition(update)
-      else update()
+      // fade the current page out, swap it while invisible, then fade the new page in (see styles.css)
+      const swap = () => { scrollTo(0, 0); flushSync(() => setRoute(next)) }
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { swap(); return }
+      document.body.classList.add('page-leaving')
+      setTimeout(() => {
+        swap()
+        document.body.classList.remove('page-leaving')
+      }, 280)
     }
     addEventListener('hashchange', on)
     return () => removeEventListener('hashchange', on)

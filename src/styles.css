@@ -193,8 +193,6 @@ section{padding:clamp(100px,13vw,190px) 0;position:relative}
 
 /* ======== v3: non-scrolling home + page routes ======== */
 :root{--gx:max(28px,calc((100vw - 1240px)/2))}
-@keyframes pgIn{from{opacity:0}to{opacity:1}}
-#smooth{animation:pgIn .8s var(--ease) both}
 .links a.on{color:var(--ink);position:relative}
 .links a.on::after{content:"";position:absolute;left:50%;bottom:-9px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--ink)}
 
@@ -433,15 +431,11 @@ main.is-page{padding-bottom:84px}
 
 /* Homepage portrait and highlights: no halo or divider strokes */
 
-/* restrained crossfade for hash-route changes (native API with CSS fallback) */
-#smooth{view-transition-name:route-content;animation:none}
-::view-transition-old(route-content){animation:route-out .4s cubic-bezier(.4,0,.2,1) both}
-::view-transition-new(route-content){animation:route-in .75s var(--ease) .08s both}
-@keyframes route-out{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-28px) scale(.975)}}
-@keyframes route-in{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-@supports not (view-transition-name:route-content){#smooth{animation:route-fallback .7s var(--ease) both}}
-@keyframes route-fallback{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
-@media (prefers-reduced-motion:reduce){::view-transition-old(route-content),::view-transition-new(route-content){animation:none!important}#smooth{animation:none!important}}
+/* page changes: the current page fades out, the new page fades in */
+#smooth{animation:page-in .6s cubic-bezier(.4,0,.2,1) both}
+body.page-leaving #smooth{animation:none;opacity:0;transition:opacity .28s cubic-bezier(.4,0,.2,1)}
+@keyframes page-in{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){#smooth,body.page-leaving #smooth{animation:none;transition:none}}
 
 /* Contact page: refined contact block and compact icon links */
 .page .contact .cgrid{grid-template-columns:minmax(0,1.05fr) minmax(300px,.85fr);gap:clamp(36px,7vw,100px);margin-top:clamp(40px,5vw,64px)}
