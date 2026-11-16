@@ -1,45 +1,7 @@
-import { useState } from 'react'
 import { EMAIL, HIGHLIGHTS, LANGUAGES, PHONE, SOCIALS } from '../data'
-
-const SITE_URL = 'https://divya-hariharan-portfolio.vercel.app/'
-
-/** Builds a vCard 3.0 file so phones can save the contact in one tap. */
-function buildVCard() {
-  const tel = PHONE.replace(/[^\d+]/g, '')
-  const linkedin = SOCIALS.find(s => s.label === 'LinkedIn')?.href
-  const lines = [
-    'BEGIN:VCARD',
-    'VERSION:3.0',
-    'N:Hariharan;Divya;;;',
-    'FN:Divya Hariharan',
-    'ORG:Al Bayan College',
-    'TITLE:English Literature Lecturer, Researcher & Author',
-    `TEL;TYPE=CELL,VOICE:${tel}`,
-    `EMAIL;TYPE=INTERNET:${EMAIL}`,
-    'ADR;TYPE=WORK:;;Muscat;;;;Oman',
-    `URL:${SITE_URL}`,
-    ...(linkedin ? [`X-SOCIALPROFILE;TYPE=linkedin:${linkedin}`] : []),
-    'END:VCARD',
-  ]
-  return lines.join('\r\n')
-}
-
-function saveContact() {
-  const blob = new Blob([buildVCard()], { type: 'text/vcard;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = 'Divya-Hariharan.vcf'
-  document.body.appendChild(a)
-  a.click()
-  a.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 1000)
-}
 import photo from '../assets/photo.webp'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
-
-const RESUME = `${import.meta.env.BASE_URL}resume.pdf`
 
 function SocialIcon({ label }: { label: string }) {
   const common = { viewBox: '0 0 24 24', 'aria-hidden': true as const, focusable: false as const }
@@ -51,11 +13,6 @@ function SocialIcon({ label }: { label: string }) {
 }
 
 export default function Contact() {
-  const [label, setLabel] = useState('Copy email')
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(EMAIL); setLabel('Copied ✓') } catch { setLabel(EMAIL) }
-    setTimeout(() => setLabel('Copy email'), 2200)
-  }
   return (
     <section className="contact" id="contact">
       <div className="wrap">
@@ -95,12 +52,8 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div className="cta vc-cta">
-            <button className="btn solid mag" type="button" onClick={copy}>{label}</button>
-            <button className="btn mag" type="button" onClick={saveContact}>Save contact +</button>
-            <a className="btn mag" href={RESUME} download="Divya-Hariharan-Resume.pdf">Download Resume ↓</a>
-          </div>
-        </Reveal>      </div>
+        </Reveal>
+      </div>
     </section>
   )
 }

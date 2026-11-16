@@ -1036,3 +1036,18 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
 }
 /* the card flip keeps its motion even where the site-wide reduced-motion rule (above) turns transitions off */
 .page .contact .vc-inner{transition:transform .9s cubic-bezier(.2,.7,.2,1)!important}
+
+/* contact buttons: keep the copy button's width steady when its label changes to "Copied ✓" */
+.page .contact .cta .btn.solid{min-width:156px;justify-content:center}
+
+/* phones: contact page sits directly under the heading, watermark hidden so it can't overlap the title */
+@media (max-width:520px){
+  .page .contact .wm{display:none}
+  .page .contact .wrap{min-height:0}
+  .page .contact .vc-wrap{flex:none;align-content:start;margin-top:32px;padding-bottom:24px}
+}
+/* narrow phones (iPhone 15 Pro and smaller): keep the bottom nav on one row */
+@media (max-width:430px){
+  .bnav{gap:10px;padding-inline:12px}
+  .bnav a:not(.btn){letter-spacing:.04em;white-space:nowrap}
+}

@@ -76,7 +76,8 @@ export function usePointerEffects() {
     const onMove = (e: PointerEvent) => {
       const c = (e.target as Element | null)?.closest?.('.card') as HTMLElement | null
       if (c) { const r = c.getBoundingClientRect(); c.style.setProperty('--mx', e.clientX - r.left + 'px'); c.style.setProperty('--my', e.clientY - r.top + 'px') }
-      if (RM) return
+      // magnetic pull is a mouse-only effect; on touch screens it made buttons jump when tapped
+      if (RM || e.pointerType !== 'mouse') return
       document.querySelectorAll<HTMLElement>('.mag').forEach(b => {
         const r = b.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2)
         if (Math.hypot(dx, dy) < r.width * 0.75 + 40) { b.style.transition = 'transform .2s ease-out'; b.style.transform = `translate(${dx * 0.28}px,${dy * 0.4}px)` }
