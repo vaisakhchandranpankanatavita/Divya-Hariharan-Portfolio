@@ -465,6 +465,14 @@ a,button,[role="tab"],.sc-in,.sc-list li,.xrow,.next,.bnav a,.hero .hnav a,.menu
 .page .sh:not(:has(.eyebrow)){padding-top:20px}
 .page .showcase .sh{padding-top:20px;margin-bottom:0}
 
+/* inner pages: the title block is a fixed header bar (same blur and hairline as the homepage nav).
+   It stays put on every inner page while the content scrolls beneath it. */
+:root{--ph:clamp(92px,10vw,116px)}
+main.is-page .page .sh{position:fixed;top:0;left:0;right:0;z-index:40;height:var(--ph);margin:0;padding:0 max(28px,calc((100vw - 1240px) / 2));display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:rgba(10,10,10,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+main.is-page .page .sh h2{margin:0}
+main.is-page .page .sh .eyebrow{display:none}
+main.is-page .page section:first-child{padding-top:calc(var(--ph) + clamp(24px,3vw,40px))}
+
 /* inner pages: bottom nav stays fixed at the bottom of the screen while the page scrolls */
 .bnav{position:fixed;left:0;right:0;bottom:0;z-index:20;padding:14px 22px;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);gap:clamp(14px,2.6vw,36px)}
 main.is-page{padding-bottom:84px}
