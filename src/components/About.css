@@ -14,7 +14,7 @@
 .about-page .ab-intro .ab-lead{font-family:var(--head);font-weight:800;font-size:clamp(28px,3.2vw,44px);line-height:1.1;letter-spacing:-.035em;color:var(--ink);max-width:24ch}
 .about-page .ab-intro .ab-text{margin:20px 0 0;max-width:60ch;color:var(--mute);font-size:16px;line-height:1.7}
 .about-page .ab-facts{margin-top:24px;border-top:1px solid var(--line)}
-.about-page .ab-facts p{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);color:#cfcfcf;font-size:15px;line-height:1.5}
+.about-page .ab-facts p{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);color:var(--mute);font-size:15px;line-height:1.5}
 .about-page .ab-facts span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-top:2px}
 
 /* the map: one hairline list of topics (compact rows) */

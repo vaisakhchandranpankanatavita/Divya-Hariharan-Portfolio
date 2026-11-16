@@ -27,7 +27,7 @@
 .home-name .ln{display:inline;white-space:nowrap}
 .home-name .w{overflow:visible;padding:0 .08em;margin:0 -.08em}
 .home-name .i{overflow:visible}
-.home-name .ln+.ln{color:#8b8b8b;margin-left:.2em}
+.home-name .ln+.ln{color:var(--mute);margin-left:.2em}
 
 .home-title{text-align:center;margin-top:clamp(8px,1.6svh,18px)}
 .home-title p{font-family:var(--head);font-weight:500;font-size:var(--title);letter-spacing:-.01em;color:var(--mute)}
@@ -39,16 +39,16 @@
 .home-left{justify-self:start;align-items:flex-start;text-align:left}
 .home-right{justify-self:end;align-items:flex-end;text-align:right}
 
-.home-now small{display:block;font-size:var(--label);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#888}
-.home-now span{display:block;margin-top:8px;font-family:var(--head);font-weight:700;font-size:var(--lead);letter-spacing:-.02em;line-height:1.2;color:#e6e6e6}
-.home-now em{display:block;margin-top:6px;font-style:normal;font-size:var(--small);color:#888}
+.home-now small{display:block;font-size:var(--label);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.home-now span{display:block;margin-top:8px;font-family:var(--head);font-weight:700;font-size:var(--lead);letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.home-now em{display:block;margin-top:6px;font-style:normal;font-size:var(--small);color:var(--mute)}
 
 .home-stats{display:flex;flex-direction:column;gap:clamp(12px,2.4svh,28px);width:100%}
 .home-stat{display:flex;flex-direction:column;gap:4px;padding-top:clamp(10px,2svh,18px);border-top:1px solid rgba(255,255,255,.05)}
 .home-right .home-stat{align-items:flex-end}
-.home-stat b{font-family:var(--head);font-weight:800;font-size:var(--num);line-height:.95;letter-spacing:-.05em;background:linear-gradient(180deg,#f1f1f1,#a4a4a4);-webkit-background-clip:text;background-clip:text;color:transparent}
-.home-stat span{font-family:var(--head);font-weight:700;font-size:var(--label);letter-spacing:.14em;text-transform:uppercase;color:#e0ddd7}
-.home-stat small{font-size:var(--small);color:#4a4845}
+.home-stat b{font-family:var(--head);font-weight:800;font-size:var(--num);line-height:.95;letter-spacing:-.05em;background:linear-gradient(180deg,var(--ink),var(--mute));-webkit-background-clip:text;background-clip:text;color:transparent}
+.home-stat span{font-family:var(--head);font-weight:700;font-size:var(--label);letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
+.home-stat small{font-size:var(--small);color:var(--line)}
 
 .home-fig{margin:0;align-self:stretch;min-height:0;display:flex;justify-content:center;align-items:flex-end}
 .home-fig img{display:block;height:100%;max-height:100%;width:auto;max-width:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 24px 40px rgba(0,0,0,.24))}
@@ -64,22 +64,25 @@
 @media (max-width:900px){
   .home{
     --pad-x: 22px;
-    --pad-top: clamp(24px, 4svh, 40px);
-    --pad-bottom: clamp(96px, 14svh, 120px);
+    --pad-top: clamp(20px, 3svh, 32px);
+    --pad-bottom: 100px;
     --name: min(9vw, 14svh);
     --photo: min(38svh, 70vw);
   }
-  .home-stage{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;align-items:end;gap:14px 16px;margin-top:clamp(12px,2.5svh,24px)}
-  .home-fig{grid-column:1/-1;grid-row:1}
+  .home-stage{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;align-items:end;gap:12px 16px;margin-top:clamp(8px,1.5svh,14px)}
+  .home-fig{grid-column:1/-1;grid-row:1;height:auto;min-height:0}
   .home-left{grid-column:1;grid-row:2}
   .home-right{grid-column:2;grid-row:2}
-  .home-stats{gap:10px}
-  .home-stat{padding-top:8px}
+  .home-stats{gap:6px}
+  .home-stat{padding-top:6px}
+  .home-col{gap:8px}
+  /* keep the phone homepage on one screen: the content ends above the nav, so nothing needs to scroll */
+  html.home,html.home body,#smooth.is-home,.home{height:100dvh !important;overflow:hidden !important}
 }
 
 /* premium black background: one deep tone with a faint centre glow, no panels or edges behind it */
-html.home,html.home body,body #smooth.is-home,.home{background:#080808}
-.home{background:radial-gradient(ellipse 70% 60% at 50% 42%, rgba(255,255,255,.035), rgba(255,255,255,0) 70%), #080808}
+html.home,html.home body,body #smooth.is-home,.home{background:var(--bg)}
+.home{background:radial-gradient(ellipse 70% 60% at 50% 42%, rgba(255,255,255,.035), rgba(255,255,255,0) 70%), var(--bg)}
 .home::before,.home::after{display:none}
 html.home body::before,html.home body::after{display:none !important;background:none !important}
 

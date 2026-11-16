@@ -6,6 +6,7 @@ import Experience from './components/Experience'
 import About from './components/About'
 import Contact from './components/Contact'
 import ResumeConfirm from './components/ResumeConfirm'
+import ThemeToggle from './components/ThemeToggle'
 import Page from './components/Page'
 import { useAnchorScroll, usePointerEffects, useResumeDownload, useSmoothScroll } from './hooks'
 import { useRoute } from './router'
@@ -30,6 +31,7 @@ export default function App() {
         {route === 'contact' && <Page route="contact"><Contact /></Page>}
       </main>
       <BottomNav route={route} />
+      <ThemeToggle />
       <ResumeConfirm />
     </>
   )
