@@ -1,0 +1,7 @@
+node_modules
+dist
+
+# stray build output / archive
+/assets/
+/resume.pdf
+/divya-portfolio-react.zip
