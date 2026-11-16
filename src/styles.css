@@ -1099,3 +1099,7 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
   .page .contact .vc-stats>div:nth-child(odd){padding-left:0;border-left:0}
   .page .contact .vc-stats>div:nth-child(even){border-left:1px solid rgba(26,25,22,.12)}
 }
+
+/* phone number is a tel: link; looks like the rest of the card text, underlines on hover */
+.page .contact .vc-tel{color:inherit;text-decoration:none;justify-self:start;border-bottom:1px solid transparent;transition:border-color .3s}
+.page .contact .vc-tel:hover,.page .contact .vc-tel:focus-visible{border-color:#c2ab89}

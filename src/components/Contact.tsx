@@ -40,9 +40,9 @@ export default function Contact() {
                   <span className="vc-kicker">Divya Hariharan</span>
                   <p className="vc-title">English Literature Lecturer<br />Researcher &amp; Author</p>
                 </div>
-                <div className="vc-bottom">
+                <div className="vc-bottom" onClick={e => e.stopPropagation()} onKeyDown={e => e.stopPropagation()}>
                   <a className="vc-mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-                  <span className="vc-line">{PHONE}</span>
+                  <a className="vc-line vc-tel" href={`tel:${PHONE.replace(/[^\d+]/g, '')}`}>{PHONE}</a>
                   <ul className="vc-soc" aria-label="Profiles" onClick={e => e.stopPropagation()} onKeyDown={e => e.stopPropagation()}>
                     {SOCIALS.map(s => (
                       <li key={s.label}>
