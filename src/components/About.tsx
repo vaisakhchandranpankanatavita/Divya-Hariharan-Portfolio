@@ -1,80 +1,136 @@
-import { AFFILIATIONS, BOOKS, CERTIFICATIONS, EDUCATION, RESEARCH_PROJECTS, SCOPUS_AUTHOR_ID, SKILLS } from '../data'
+import { useState, type ReactNode } from 'react'
+import { AFFILIATIONS, BOOKS, CERTIFICATIONS, CONFERENCES, CREATIVE_WRITING, EDUCATION, INTERESTS, LANGUAGES, RESEARCH_PROJECTS, SCOPUS_AUTHOR_ID, SKILLS, TRAINING } from '../data'
 import SectionHead from './SectionHead'
 import Split from './Split'
 import Reveal from './Reveal'
+import './About.css'
 
-const RESUME = `${import.meta.env.BASE_URL}resume.pdf`
+/** One collapsible topic: a map row (number, title, hint) that expands to its details. */
+function Topic({ n, title, hint, open, onToggle, children }: { n: string; title: string; hint: string; open: boolean; onToggle: () => void; children: ReactNode }) {
+  return (
+    <div className={`ab-topic${open ? ' is-open' : ''}`}>
+      <button type="button" className="ab-head" aria-expanded={open} onClick={onToggle}>
+        <span className="ab-num">{n}</span>
+        <span className="ab-title">{title}</span>
+        <span className="ab-hint">{hint}</span>
+        <span className="ab-plus" aria-hidden="true" />
+      </button>
+      <div className="ab-panel" aria-hidden={!open}>
+        <div className="ab-body">{children}</div>
+      </div>
+    </div>
+  )
+}
 
 export default function About() {
-  return (
-    <section id="about">
-      <div className="wrap">
-        <SectionHead title={<>About <em>me</em></>} />
-        <div className="about2">
-          <div>
-            <Split as="p" className="big">Dedicated to creating, implementing and assessing instruction that meets student needs.</Split>
-            <Reveal as="p" className="t">I have led curriculum development, student mentoring and classroom management, and my scholarly work covers autism, gender and identity.</Reveal>
-            <Reveal className="langs">
-              <span className="lang-label">Languages</span>
-              <div className="lang-list">
-                {['English', 'Malayalam', 'Hindi', 'Tamil'].map(language => <span key={language}>{language}</span>)}
-              </div>
-            </Reveal>
-            <Reveal className="about-actions">
-              <a className="about-resume-link" href={RESUME} download="Divya-Hariharan-Resume.pdf">Download resume <span aria-hidden="true">↓</span></a>
-            </Reveal>
-          </div>
-          <div data-speed=".06">
-            <Reveal className="edu">
-              <p className="eyebrow" style={{ marginBottom: 16 }}>Education</p>
-              {EDUCATION.map(e => (
-                <div key={e.title}><h4>{e.title}</h4><time>{e.time}</time><p>{e.place}</p></div>
-              ))}
-            </Reveal>
-          </div>
+  const [open, setOpen] = useState<Record<string, boolean>>({ education: true })
+  // Accordion: opening one topic closes the others (clicking the open one closes it).
+  const toggle = (k: string) => setOpen(s => (s[k] ? {} : { [k]: true }))
+
+  const topics = [
+    {
+      key: 'education', title: 'Education', hint: `${EDUCATION.length} degrees`,
+      body: (
+        <ul className="ab-rows">
+          {EDUCATION.map(e => <li key={e.title}><b>{e.title}</b><time>{e.time}</time><span>{e.place}</span></li>)}
+        </ul>
+      ),
+    },
+    {
+      key: 'certs', title: 'Certificates & training', hint: `${CERTIFICATIONS.length + TRAINING.length} items`,
+      body: (
+        <ul className="ab-rows">
+          {[...CERTIFICATIONS, ...TRAINING].map(c => <li key={c.title}><b>{c.title}</b><time>{c.detail}</time></li>)}
+        </ul>
+      ),
+    },
+    {
+      key: 'affiliations', title: 'Affiliations', hint: `${AFFILIATIONS.length} memberships`,
+      body: (
+        <>
+          <ul className="ab-rows">
+            {AFFILIATIONS.map(a => <li key={a}><b>{a}</b></li>)}
+          </ul>
+          <a className="ab-link" href={`https://www.scopus.com/authid/detail.uri?authorId=${SCOPUS_AUTHOR_ID}`} target="_blank" rel="noopener noreferrer">
+            Scopus Author ID {SCOPUS_AUTHOR_ID} <span aria-hidden="true">↗</span>
+          </a>
+        </>
+      ),
+    },
+    {
+      key: 'research', title: 'Research projects', hint: `${RESEARCH_PROJECTS.length} projects`,
+      body: (
+        <ul className="ab-rows">
+          {RESEARCH_PROJECTS.map(p => <li key={p.title}><b>{p.title}</b><span>{p.detail}</span></li>)}
+        </ul>
+      ),
+    },
+    {
+      key: 'books', title: 'Books & anthologies', hint: `${BOOKS.length} titles`,
+      body: (
+        <div className="ab-grid">
+          {BOOKS.map(book => (
+            <article key={book.title}>
+              <h3>{book.href ? <a href={book.href} target="_blank" rel="noopener noreferrer">{book.title} <span aria-hidden="true">↗</span></a> : book.title}</h3>
+              <p>{book.detail}</p>
+            </article>
+          ))}
         </div>
-        <div className="about-extras">
-          <Reveal as="section" className="about-detail">
-            <p className="eyebrow">Certificates &amp; training</p>
-            <ul className="about-detail-list">
-              {CERTIFICATIONS.map(item => <li key={item.title}><span>{item.title}</span><small>{item.detail}</small></li>)}
-            </ul>
-          </Reveal>
-          <Reveal as="section" className="about-detail">
-            <p className="eyebrow">Professional affiliations</p>
-            <ul className="about-detail-list">
-              {AFFILIATIONS.map(item => <li key={item}><span>{item}</span></li>)}
-            </ul>
-            <a className="scopus-link" href={`https://www.scopus.com/authid/detail.uri?authorId=${SCOPUS_AUTHOR_ID}`} target="_blank" rel="noopener noreferrer">
-              Scopus Author ID <span>{SCOPUS_AUTHOR_ID}</span><i aria-hidden="true">↗</i>
-            </a>
-          </Reveal>
-          <Reveal as="section" className="about-detail about-research">
-            <p className="eyebrow">Research projects</p>
-            <div className="research-projects">
-              {RESEARCH_PROJECTS.map(project => <article key={project.title}><h3>{project.title}</h3><p>{project.detail}</p></article>)}
+      ),
+    },
+    {
+      key: 'conferences', title: 'Conferences & seminars', hint: `${CONFERENCES.length} events`,
+      body: (
+        <ul className="ab-rows">
+          {CONFERENCES.map(c => <li key={c.title}><b>{c.title}</b><time>{c.year}</time><span>{c.detail}</span></li>)}
+        </ul>
+      ),
+    },
+    {
+      key: 'writing', title: 'Creative writing', hint: `${CREATIVE_WRITING.length} works`,
+      body: (
+        <ul className="ab-rows">
+          {CREATIVE_WRITING.map(w => <li key={w.title}><b>{w.title}</b><time>{w.detail}</time></li>)}
+        </ul>
+      ),
+    },
+    {
+      key: 'skills', title: 'Skills', hint: `${SKILLS.length} areas`,
+      body: (
+        <div className="ab-grid ab-grid--skills">
+          {SKILLS.map(s => (
+            <div key={s.title}>
+              <h3>{s.title}</h3>
+              <p>{s.items.join(', ')}</p>
             </div>
-          </Reveal>
+          ))}
         </div>
-        <div className="books-wrap">
-          <Reveal as="p" className="eyebrow">Books &amp; anthologies</Reveal>
-          <div className="books-list">
-            {BOOKS.map(book => (
-              <article className="book-item" key={book.title}>
-                <h3>{book.href ? <a href={book.href} target="_blank" rel="noopener noreferrer">{book.title}<span aria-hidden="true"> ↗</span></a> : book.title}</h3>
-                <p>{book.detail}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-        <div className="skills-wrap">
-          <Reveal as="p" className="eyebrow">Skills &amp; competencies</Reveal>
-          <Reveal className="skills">
-            {SKILLS.map(s => (
-              <div className="sk" key={s.title}>
-                <div className="sk-head"><span className="n">{s.n}</span><h4>{s.title}</h4></div>
-                <ul>{s.items.map(i => <li key={i}>{i}</li>)}</ul>
-              </div>
+      ),
+    },
+  ]
+
+  return (
+    <section className="about-page">
+      <div className="wrap">
+        <SectionHead watermark="Profile" title={<>About <em>me</em></>} />
+
+        <div className="ab-split">
+          <aside className="ab-side">
+            <div className="ab-intro">
+              <Split as="p" className="ab-lead">Dedicated to creating, implementing and assessing instruction that meets student needs.</Split>
+              <Reveal as="p" className="ab-text">I have led curriculum development, student mentoring and classroom management. My scholarly work covers autism, gender and identity.</Reveal>
+              <Reveal className="ab-facts">
+                <p><span>Languages</span>{LANGUAGES.join(' · ')}</p>
+                <p><span>Interests</span>{INTERESTS.join(' · ')}</p>
+              </Reveal>
+            </div>
+          </aside>
+
+          <Reveal className="ab-map">
+            {topics.map((t, i) => (
+              <Topic key={t.key} n={String(i + 1).padStart(2, '0')} title={t.title} hint={t.hint} open={!!open[t.key]} onToggle={() => toggle(t.key)}>
+                {t.body}
+              </Topic>
             ))}
           </Reveal>
         </div>

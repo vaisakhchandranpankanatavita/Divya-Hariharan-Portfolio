@@ -37,16 +37,12 @@ export default function Hero() {
         <p>English Literature Lecturer, Researcher &amp; Author</p>
       </Reveal>
 
-      <Reveal className="creds" delay={260}>
-        <span>PhD in English, Lincoln University College</span>
-        <i aria-hidden="true" />
-        <span>Al Bayan College</span>
-      </Reveal>
-
       <div className="home-stage">
         <div className="home-col home-left">
-          <Reveal className="home-intro" delay={300}>
-            <p>Seven-plus years teaching English language and literature, turning classroom practice into published research.</p>
+          <Reveal className="home-now home-edu" delay={300}>
+            <small>Education</small>
+            <span>PhD in English</span>
+            <em>Lincoln University College</em>
           </Reveal>
           <div className="home-stats">
             <Stat i={0} delay={380} />
@@ -62,7 +58,7 @@ export default function Hero() {
           <Reveal className="home-now" delay={260}>
             <small>Currently teaching at</small>
             <span>Al Bayan College</span>
-            <em>Muscat, Oman · <i className="clock">{time}</i></em>
+            <em>Muscat, Oman</em>
           </Reveal>
           <div className="home-stats">
             <Stat i={2} delay={520} />

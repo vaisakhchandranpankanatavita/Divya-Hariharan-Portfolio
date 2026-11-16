@@ -111,3 +111,41 @@ export const SOCIALS = [
   { label: 'Web of Science', href: 'https://www.webofscience.com/wos/author/record/KDP-1587-2024' },
   { label: 'Blog', href: 'https://divyaspen.wordpress.com' },
 ]
+
+export const LANGUAGES = ['English', 'Malayalam', 'Hindi', 'Tamil']
+
+export const INTERESTS = [
+  'English literature teaching', 'English language teaching (ELT)', 'IELTS training', 'Professional writing',
+  'Creative writing', 'Research', 'Soft skills', 'Singing', 'Volunteer work',
+]
+
+export const CONFERENCES = [
+  { year: '2025', title: '3rd International Conference on Advancing Sustainable Futures (ICASF 2025)', detail: 'Abu Dhabi University · 10–11 Dec 2025 · Presented “Inclusive Education and Digital Equity for Sustainable Education Growth”.' },
+  { year: '2025', title: '3rd RUW International Conference on Women and Society', detail: 'Royal University for Women · 11–12 May 2025 · Presented on mental health disparities among school-attending children.' },
+  { year: '2024', title: '5th International Conference on Business, Digital Transformation, Innovation and Sustainability', detail: 'Gulf University, Bahrain · 30–31 Oct 2024 · Presented “Under Pressure”.' },
+  { year: '2024', title: 'Oman Conference for Environmental Sustainability (OCES 2024)', detail: 'Environmental Authority Oman · 26–28 Feb 2024 · Presented on sustainable packaging from date palm leaves.' },
+  { year: '2024', title: 'Two Day International Conference on Media Metamorphosis 2024', detail: 'Shri Shankarlal Sundarbai Shasun Jain College for Women, India · Feb 2024 · Presented two papers.' },
+  { year: '2023', title: 'Special Lecture by Noam Chomsky', detail: 'St Berchmans College, Changanacherry · 3 May 2023 · Attended.' },
+  { year: '2023', title: 'Virtual Language Assessment Conference', detail: 'British Council, Riyadh · 8–9 May 2023 · Attended.' },
+  { year: '2023', title: '6th Sohar University Research Conference (SURC 2023)', detail: 'Sohar University, Oman · May 2023 · Presented on integrating autistic children in Oman society.' },
+  { year: '2023', title: 'The Oman 22nd International ELT Conference', detail: 'Sultan Qaboos University · March 2023 · Participated.' },
+  { year: '2022', title: 'Three Day International Conference on Trans-Ending Polarities', detail: 'Vellalar College for Women, Erode · Nov 2022 · Resource person; presented “Trans-shaping texts”.' },
+  { year: '2022', title: 'International Conference on Creative Writing', detail: 'Vellalar College for Women, Erode · March 2022 · Resource person; presented “The Secret Language of Women”.' },
+  { year: '2022', title: 'Professional development workshop', detail: 'Bayan College, Muscat · March 2022 · Resource person on task-based activities in ELT.' },
+  { year: '2021', title: 'International Creative Writing Symposium', detail: 'Christ College, Irinjalakuda, Kerala · June 2021 · Participated.' },
+  { year: '2020', title: 'International Virtual ELT Web Conference', detail: 'Ibri College of Technology, Oman · July 2020 · Participated.' },
+  { year: '2019', title: 'Career Trends and Skills: 21st Century', detail: 'Bayan College, Muscat · May 2019 · Presented a webinar.' },
+]
+
+export const CREATIVE_WRITING = [
+  { title: '“The Pallete of Wonders”', detail: 'Creative Writing Magazine · 2024–25' },
+  { title: '“Culture Crossroads”', detail: 'Creative Writing Magazine · 2023–24' },
+  { title: '“Thousand Spotlights”', detail: 'Creative Writing Magazine · 2022–23' },
+  { title: '“The World of Words”', detail: 'Creative Writing Magazine · 2022–23' },
+  { title: '“Class Memoirs”', detail: 'Creative Writing Magazine · 2022–23' },
+]
+
+export const TRAINING = [
+  { title: 'Communication Skills in English and Basic IT · ASAP', detail: '21-day residential programme · 2013' },
+  { title: 'Transformational Training Programme · ASAP', detail: '2014' },
+]

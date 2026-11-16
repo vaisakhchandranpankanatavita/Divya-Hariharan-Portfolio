@@ -1,64 +1,97 @@
-/* Homepage: centred name, credentials line, three-column stage (stats | portrait | stats). */
+/* Homepage: one non-scrolling screen. Every size scales with the viewport (vw for width, svh for height),
+   and the page uses the same padding on all four sides. */
 
-/* Non-scrolling home: the whole composition fits in one viewport. */
-.home{position:relative;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:clamp(64px,11svh,104px) var(--gx,28px) clamp(64px,10svh,96px);--gx:max(28px,calc((100vw - 1320px)/2))}
+.home{
+  --pad-x: clamp(20px, 4vw, 72px);
+  --pad-top: clamp(24px, 6svh, 64px);
+  --pad-bottom: clamp(96px, 14svh, 120px);
+  --name: min(7.2vw, 12svh);
+  --lead: clamp(15px, min(1.8vw, 3.2svh), 28px);
+  --title: clamp(13px, min(1.4vw, 2.4svh), 22px);
+  --small: clamp(11px, min(0.9vw, 1.5svh), 15px);
+  --label: clamp(9px, min(0.72vw, 1.2svh), 12px);
+  --num: clamp(28px, min(3.6vw, 5.6svh), 72px);
+  --photo: min(50svh, 44vw);
 
-.home-name{text-align:center;font-family:var(--head);font-weight:800;text-transform:uppercase;font-size:clamp(44px,7.6vw,112px);line-height:.95;letter-spacing:-.045em}
+  position: relative;
+  box-sizing: border-box;
+  height: calc(100vh - 62px);
+  height: calc(100dvh - 62px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+}
+
+/* name: one line, scales with width and height */
+.home-name{margin:0;text-align:center;white-space:nowrap;font-family:var(--head);font-weight:800;text-transform:uppercase;font-size:var(--name);line-height:.95;letter-spacing:-.045em}
+.home-name .ln{display:inline;white-space:nowrap}
+.home-name .w{overflow:visible;padding:0 .08em;margin:0 -.08em}
+.home-name .i{overflow:visible}
 .home-name .ln+.ln{color:#8b8b8b;margin-left:.2em}
 
-.home-title{text-align:center;margin-top:18px}
-.home-title p{font-family:var(--head);font-weight:500;font-size:clamp(15px,1.5vw,19px);letter-spacing:-.01em;color:var(--mute)}
+.home-title{text-align:center;margin-top:clamp(8px,1.6svh,18px)}
+.home-title p{font-family:var(--head);font-weight:500;font-size:var(--title);letter-spacing:-.01em;color:var(--mute)}
 
-.creds{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 18px;margin-top:18px;font-family:var(--head);font-weight:600;font-size:clamp(14px,1.3vw,17px);letter-spacing:-.01em;color:#e6e6e6;text-align:center}
-.creds span{white-space:nowrap}
-.creds i{display:block;width:1px;height:16px;background:#4a4a4a}
+/* stage: stats | portrait | details, filling the rest of the screen */
+.home-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);grid-template-rows:minmax(0,1fr);align-items:stretch;gap:clamp(20px,3vw,56px);margin-top:clamp(16px,4svh,48px)}
 
-.home-stage{display:grid;grid-template-columns:1fr minmax(260px,400px) 1fr;align-items:center;gap:clamp(24px,4vw,64px);margin-top:clamp(28px,5svh,56px)}
+.home-col{display:flex;flex-direction:column;justify-content:space-between;gap:clamp(14px,2.6svh,28px);width:100%;max-width:340px}
+.home-left{justify-self:start;align-items:flex-start;text-align:left}
+.home-right{justify-self:end;align-items:flex-end;text-align:right}
 
-.home-col{display:flex;flex-direction:column;justify-content:space-between;gap:36px}
-.home-right{text-align:right;align-items:flex-end}
+.home-now small{display:block;font-size:var(--label);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#888}
+.home-now span{display:block;margin-top:8px;font-family:var(--head);font-weight:700;font-size:var(--lead);letter-spacing:-.02em;line-height:1.2;color:#e6e6e6}
+.home-now em{display:block;margin-top:6px;font-style:normal;font-size:var(--small);color:#888}
 
-.home-intro p{max-width:30ch;color:#aaa;font-size:15px;line-height:1.6}
-
-.home-stats{display:flex;flex-direction:column;gap:clamp(16px,3svh,30px)}
-.home-stat{display:flex;flex-direction:column;gap:4px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
+.home-stats{display:flex;flex-direction:column;gap:clamp(12px,2.4svh,28px);width:100%}
+.home-stat{display:flex;flex-direction:column;gap:4px;padding-top:clamp(10px,2svh,18px);border-top:1px solid rgba(255,255,255,.05)}
 .home-right .home-stat{align-items:flex-end}
-.home-stat b{font-family:var(--head);font-weight:800;font-size:clamp(40px,4.6vw,68px);line-height:.95;letter-spacing:-.05em;background:linear-gradient(180deg,#f1f1f1,#a4a4a4);-webkit-background-clip:text;background-clip:text;color:transparent}
-.home-stat span{font-family:var(--head);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#e0ddd7}
-.home-stat small{font-size:13px;color:#8f8b84}
+.home-stat b{font-family:var(--head);font-weight:800;font-size:var(--num);line-height:.95;letter-spacing:-.05em;background:linear-gradient(180deg,#f1f1f1,#a4a4a4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.home-stat span{font-family:var(--head);font-weight:700;font-size:var(--label);letter-spacing:.14em;text-transform:uppercase;color:#e0ddd7}
+.home-stat small{font-size:var(--small);color:#4a4845}
 
-.home-fig{margin:0;display:flex;justify-content:center;align-items:flex-end}
-.home-fig img{display:block;height:min(50svh,520px);width:auto;max-width:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 24px 40px rgba(0,0,0,.24))}
+.home-fig{margin:0;align-self:stretch;min-height:0;display:flex;justify-content:center;align-items:flex-end}
+.home-fig img{display:block;height:100%;max-height:100%;width:auto;max-width:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 24px 40px rgba(0,0,0,.24))}
 
-.home-now small{display:block;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#888}
-.home-now span{display:block;margin-top:8px;font-family:var(--head);font-weight:700;font-size:clamp(20px,2vw,28px);letter-spacing:-.02em;color:#e6e6e6}
-.home-now em{display:block;margin-top:6px;font-style:normal;font-size:14px;color:#888}
 .clock{font-variant-numeric:tabular-nums}
 
-@media (min-width:901px) and (max-height:860px){
-  .home-name{font-size:clamp(40px,min(7.6vw,13svh),112px)}
-  .home-intro{display:none}
+/* short screens: keep the essentials, drop the secondary lines */
+@media (max-height:700px){
   .home-stat small,.home-now em{display:none}
-  .home-stage{margin-top:clamp(18px,3svh,36px)}
-  .home-fig img{height:min(46svh,480px)}
-  .home-stat{padding-top:10px;gap:2px}
-  .home-stat b{font-size:clamp(28px,4.4svh,48px)}
-  .home-stats{gap:clamp(10px,2svh,22px)}
-  .home-title{margin-top:10px}
-  .creds{margin-top:12px}
-  .home-col{gap:12px;justify-content:center}
-  .home-now span{font-size:clamp(16px,2.6svh,22px)}
-  .home-now em{display:none}
 }
+
+/* phones and narrow tablets: portrait on top, two columns of facts beneath */
 @media (max-width:900px){
-  .home{padding:96px 22px 110px}
-  .home-stage{grid-template-columns:1fr 1fr;gap:26px 18px}
-  .home-fig{grid-column:1/-1;order:-1}
-  .home-fig img{height:min(42svh,420px)}
-  .home-intro{display:none}
+  .home{
+    --pad-x: 22px;
+    --pad-top: clamp(24px, 4svh, 40px);
+    --pad-bottom: clamp(96px, 14svh, 120px);
+    --name: min(9vw, 14svh);
+    --photo: min(38svh, 70vw);
+  }
+  .home-stage{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;align-items:end;gap:14px 16px;margin-top:clamp(12px,2.5svh,24px)}
+  .home-fig{grid-column:1/-1;grid-row:1}
+  .home-left{grid-column:1;grid-row:2}
+  .home-right{grid-column:2;grid-row:2}
+  .home-stats{gap:10px}
+  .home-stat{padding-top:8px}
 }
-@media (max-width:620px){
-  .creds{flex-direction:column;gap:6px;font-size:15px}
-  .creds i{display:none}
-  .home-stat b{font-size:40px}
+
+/* premium black background: one deep tone with a faint centre glow, no panels or edges behind it */
+html.home,html.home body,body #smooth.is-home,.home{background:#080808}
+.home{background:radial-gradient(ellipse 70% 60% at 50% 42%, rgba(255,255,255,.035), rgba(255,255,255,0) 70%), #080808}
+.home::before,.home::after{display:none}
+html.home body::before,html.home body::after{display:none !important;background:none !important}
+
+/* slow premium load: particles fade up over ~3s, the name rises gently, the stage follows */
+.home-particles{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;animation:home-particles-in 3.2s cubic-bezier(.16,1,.3,1) .2s forwards}
+.home>:not(.home-particles){position:relative;z-index:1}
+.home-name{animation:home-rise 1.8s cubic-bezier(.16,1,.3,1) .15s both}
+.home-stage{animation:home-fade 2.2s cubic-bezier(.16,1,.3,1) .5s both}
+@keyframes home-particles-in{to{opacity:1}}
+@keyframes home-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes home-fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){
+  .home-particles{animation:none;opacity:1}
+  .home-name,.home-stage{animation:none}
 }

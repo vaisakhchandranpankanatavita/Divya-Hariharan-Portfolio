@@ -1,0 +1,82 @@
+/* About: a short intro, then a collapsible "map" of topics.
+   Built on the same tokens as Work and Experience (--line, --mute, --ink, --head, --sans).
+   Selectors are prefixed with .about-page so they beat the inner-page type scale in styles.css. */
+
+.about-page{padding-bottom:0}
+
+/* two columns on desktop: intro stays in view on the left, topic map on the right */
+.about-page .ab-split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(40px,5vw,88px);align-items:start;margin-top:clamp(8px,2svh,20px)}
+.about-page .ab-side{position:sticky;top:120px}
+.about-page .ab-map{margin-top:0}
+
+/* intro */
+.about-page .ab-intro{max-width:520px}
+.about-page .ab-intro .ab-lead{font-family:var(--head);font-weight:800;font-size:clamp(28px,3.2vw,44px);line-height:1.1;letter-spacing:-.035em;color:var(--ink);max-width:24ch}
+.about-page .ab-intro .ab-text{margin:20px 0 0;max-width:60ch;color:var(--mute);font-size:16px;line-height:1.7}
+.about-page .ab-facts{margin-top:24px;border-top:1px solid var(--line)}
+.about-page .ab-facts p{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--line);color:#cfcfcf;font-size:15px;line-height:1.5}
+.about-page .ab-facts span{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);padding-top:2px}
+
+/* the map: one hairline list of topics (compact rows) */
+.about-page .ab-map{border-top:1px solid var(--line)}
+
+.about-page .ab-topic{border-bottom:1px solid var(--line)}
+.about-page .ab-head{display:grid;grid-template-columns:36px minmax(0,1fr) auto 26px;align-items:center;gap:clamp(12px,1.8vw,22px);width:100%;padding:clamp(14px,1.6vw,20px) 0;background:none;border:0;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
+.about-page .ab-num{font-family:var(--head);font-weight:700;font-size:13px;letter-spacing:.08em;color:var(--mute)}
+.about-page .ab-title{font-family:var(--head);font-weight:700;font-size:clamp(20px,2vw,28px);line-height:1.15;letter-spacing:-.03em;transition:transform .6s var(--ease)}
+.about-page .ab-hint{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.about-page .ab-plus{position:relative;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;transition:background .45s var(--ease),border-color .45s}
+.about-page .ab-plus::before,.about-page .ab-plus::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1px;background:var(--ink);transform:translate(-50%,-50%);transition:transform .45s var(--ease),background .45s}
+.about-page .ab-plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+.about-page .ab-head:hover .ab-plus{border-color:var(--ink)}
+.about-page .ab-head:hover .ab-title{transform:translateX(clamp(4px,.8vw,12px))}
+.about-page .ab-topic.is-open .ab-plus{background:var(--ink)}
+.about-page .ab-topic.is-open .ab-plus::before,.about-page .ab-topic.is-open .ab-plus::after{background:var(--bg)}
+.about-page .ab-topic.is-open .ab-plus::after{transform:translate(-50%,-50%) rotate(0deg)}
+.about-page .ab-head:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:6px}
+
+/* collapsible panel: animates height via grid rows, hidden from view when closed */
+.about-page .ab-panel{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .6s var(--ease),visibility 0s .6s}
+.about-page .ab-topic.is-open .ab-panel{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .6s var(--ease),visibility 0s}
+.about-page .ab-body{min-height:0;overflow:hidden;padding-left:calc(36px + clamp(12px,1.8vw,22px))}
+.about-page .ab-topic.is-open .ab-body{padding-bottom:clamp(16px,2vw,24px)}
+
+/* rows inside a topic */
+.about-page .ab-rows{list-style:none;border-top:1px solid var(--line)}
+.about-page .ab-rows li{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;row-gap:4px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line)}
+.about-page .ab-rows b{font-family:var(--head);font-weight:600;font-size:16px;line-height:1.45;letter-spacing:-.01em;color:var(--ink)}
+.about-page .ab-rows time{grid-column:2;grid-row:1;font-size:13px;color:var(--mute);text-align:right;white-space:nowrap}
+.about-page .ab-rows span{grid-column:1;font-size:14px;line-height:1.55;color:var(--mute)}
+.about-page .ab-rows b+span{margin-top:0}
+
+.about-page .ab-link{display:inline-flex;gap:8px;margin-top:18px;font-size:13px;color:var(--mute);transition:color .3s}
+.about-page .ab-link:hover{color:var(--ink)}
+
+/* grid of items (books, skills): plain columns, no horizontal scrolling */
+.about-page .ab-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,32px)}
+.about-page .ab-grid--skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+.about-page .ab-grid article,.about-page .ab-grid>div{padding-top:16px;border-top:1px solid var(--line)}
+.about-page .ab-grid h3{font-family:var(--head);font-weight:600;font-size:16px;line-height:1.35;letter-spacing:-.015em;color:var(--ink)}
+.about-page .ab-grid h3 a{color:inherit;transition:color .3s}
+.about-page .ab-grid h3 a:hover{color:var(--mute)}
+.about-page .ab-grid p{margin-top:8px;font-size:14px;line-height:1.6;color:var(--mute)}
+
+@media (max-width:900px){
+  .about-page .ab-split{grid-template-columns:1fr;gap:48px}
+  .about-page .ab-side{position:static}
+  .about-page .ab-intro{max-width:none}
+  .about-page .ab-grid,.about-page .ab-grid--skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:620px){
+  .about-page .ab-facts p{grid-template-columns:1fr;gap:4px}
+  .about-page .ab-head{grid-template-columns:32px minmax(0,1fr) 28px;gap:12px}
+  .about-page .ab-hint{display:none}
+  .about-page .ab-body{padding-left:0}
+  .about-page .ab-rows li{grid-template-columns:minmax(0,1fr)}
+  .about-page .ab-rows time{grid-column:1;grid-row:auto;text-align:left;white-space:normal}
+  .about-page .ab-rows span{grid-column:1}
+  .about-page .ab-grid,.about-page .ab-grid--skills{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .about-page .ab-panel,.about-page .ab-title,.about-page .ab-plus,.about-page .ab-plus::before,.about-page .ab-plus::after{transition:none}
+}
