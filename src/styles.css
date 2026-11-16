@@ -1014,12 +1014,21 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
 .page .contact .vc-cta{margin-top:32px;justify-self:center}
 
 @media (max-width:520px){
-  .page .contact .vc-scene{aspect-ratio:1.2/1}
-  .page .contact .vc-photo{height:60%;right:4px}
-  .page .contact .vc-top,.page .contact .vc-bottom{max-width:64%}
-  .page .contact .vc-kicker{font-size:28px}
-  .page .contact .vc-mail{font-size:16px}
-  .page .contact .vc-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}
+  .page .contact .vc-scene{aspect-ratio:1/1.1}
+  .page .contact .vc-front,.page .contact .vc-back{padding:24px}
+  .page .contact .vc-front::before,.page .contact .vc-back::before{left:24px;right:auto;top:24px}
+  .page .contact .vc-back::before{left:auto;right:24px}
+  .page .contact .vc-photo{top:auto;bottom:6px;right:-6px;height:50%}
+  .page .contact .vc-top{max-width:62%;margin-top:14px}
+  .page .contact .vc-bottom{max-width:none}
+  .page .contact .vc-kicker{font-size:26px}
+  .page .contact .vc-title{font-size:14px;margin-top:10px}
+  .page .contact .vc-mail{font-size:15px;word-break:normal;overflow-wrap:anywhere}
+  .page .contact .vc-line{font-size:14px}
+  .page .contact .vc-soc{margin-top:10px;gap:8px}
+  .page .contact .vc-soc a{width:34px;height:34px}
+  .page .contact .vc-dl{gap:12px}
+  .page .contact .vc-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:14px}
   .page .contact .vc-stats>div:nth-child(odd){padding-left:0;border-left:0}
 }
 /* the card flip keeps its motion even where the site-wide reduced-motion rule (above) turns transitions off */
