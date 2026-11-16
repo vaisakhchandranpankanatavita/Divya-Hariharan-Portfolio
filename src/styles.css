@@ -1051,3 +1051,11 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
   .bnav{gap:10px;padding-inline:12px}
   .bnav a:not(.btn){letter-spacing:.04em;white-space:nowrap}
 }
+
+/* phones: bottom bar is one horizontally scrollable row; the right-edge fade signals there is more to scroll */
+@media (max-width:760px){
+  .bnav{display:flex;flex-wrap:nowrap;justify-content:flex-start;align-items:center;gap:22px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;padding:14px 56px 14px 20px;scroll-padding-inline:20px;-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 78%,transparent 100%);mask-image:linear-gradient(90deg,#000 0%,#000 78%,transparent 100%)}
+  .bnav::-webkit-scrollbar{display:none}
+  .bnav>*{flex:0 0 auto;white-space:nowrap}
+  .bnav a:not(.btn){font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+}
