@@ -7,3 +7,5 @@ dist
 /divya-portfolio-react.zip
 /preview/
 /preview.zip
+.vercel
+.env*
