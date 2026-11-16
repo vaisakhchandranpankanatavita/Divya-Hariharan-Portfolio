@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { EMAIL, PHONE, SOCIALS } from '../data'
+import { EMAIL, HIGHLIGHTS, LANGUAGES, PHONE, SOCIALS } from '../data'
+import photo from '../assets/photo.webp'
 import SectionHead from './SectionHead'
 import Reveal from './Reveal'
 
@@ -24,20 +25,46 @@ export default function Contact() {
     <section className="contact" id="contact">
       <div className="wrap">
         <SectionHead flush watermark="Hello" title={<>Let’s <em>Connect.</em></>} />
-        <div className="cgrid">
-          <Reveal>
-            <a className="mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-            <p className="ph">{PHONE} · Muscat, Oman</p>
-            <div className="cta">
-              <button className="btn solid mag" type="button" onClick={copy}>{label}</button>
-              <a className="btn mag" href={RESUME} download="Divya-Hariharan-Resume.pdf">Download Resume ↓</a>
+        <Reveal className="vc-wrap">
+          <div className="vc-scene">
+            <div className="vc-inner">
+              <article className="vc-face vc-front" aria-label="Divya Hariharan contact card">
+                <img className="vc-photo" src={photo} alt="" width={690} height={815} />
+                <div className="vc-top">
+                  <span className="vc-kicker">Divya Hariharan</span>
+                  <p className="vc-title">English Literature Lecturer<br />Researcher &amp; Author</p>
+                </div>
+                <div className="vc-bottom">
+                  <a className="vc-mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+                  <span className="vc-line">{PHONE}</span>
+                  <ul className="vc-soc" aria-label="Profiles">
+                    {SOCIALS.map(s => (
+                      <li key={s.label}>
+                        <a href={s.href} target="_blank" rel="noopener noreferrer" title={s.href} aria-label={s.label}><SocialIcon label={s.label} /></a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+              <div className="vc-face vc-back" aria-label="More about Divya Hariharan">
+                <span className="vc-eyebrow">Details</span>
+                <dl className="vc-dl">
+                  <div><dt>Based in</dt><dd>Muscat, Oman</dd></div>
+                  <div><dt>Languages</dt><dd>{LANGUAGES.join(' · ')}</dd></div>
+                </dl>
+                <div className="vc-stats">
+                  {HIGHLIGHTS.map(h => (
+                    <div key={h.label}><b>{h.value}</b><span>{h.label}</span></div>
+                  ))}
+                </div>
+              </div>
             </div>
-          </Reveal>
-          <Reveal className="soc">
-            {SOCIALS.map(s => <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"><span className="soc-icon"><SocialIcon label={s.label} /></span><span className="soc-label">{s.label}</span><span className="soc-go" aria-hidden="true">↗</span></a>)}
-          </Reveal>
-        </div>
-      </div>
+          </div>
+          <div className="cta vc-cta">
+            <button className="btn solid mag" type="button" onClick={copy}>{label}</button>
+            <a className="btn mag" href={RESUME} download="Divya-Hariharan-Resume.pdf">Download Resume ↓</a>
+          </div>
+        </Reveal>      </div>
     </section>
   )
 }

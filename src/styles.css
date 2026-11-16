@@ -971,3 +971,56 @@ main.is-page .wk-side .sc-filter button.on::before{width:26px}
   main.is-page .wk-side .sc-filter{gap:8px 20px}
   main.is-page .wk-side .sc-filter button{padding:4px 0}
 }
+
+/* contact page: premium matte visiting card that flips on hover to show details */
+.page .contact .wrap{display:flex;flex-direction:column;min-height:calc(100svh - var(--ph) - 84px)}
+.page .contact .vc-wrap{flex:1;display:grid;justify-items:center;align-content:center;margin-top:clamp(24px,3vw,40px);padding-bottom:clamp(24px,3vw,40px)}
+.page .contact .vc-scene{position:relative;width:min(100%,760px);aspect-ratio:1.75/1;perspective:1600px}
+.page .contact .vc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.page .contact .vc-scene:hover .vc-inner,.page .contact .vc-scene:focus-within .vc-inner{transform:rotateY(180deg)}
+.page .contact .vc-scene:has(.vc-soc:hover) .vc-inner,.page .contact .vc-scene:has(.vc-soc:focus-within) .vc-inner{transform:none}
+.page .contact .vc-face{position:absolute;inset:0;box-sizing:border-box;margin:0;border-radius:12px;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:1px solid rgba(255,255,255,.08)}
+
+/* front: matte black, champagne hairline */
+.page .contact .vc-front{padding:clamp(28px,4vw,50px);display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,#151515 0%,#0c0c0c 100%);color:#f2f0eb;box-shadow:0 34px 60px -30px rgba(0,0,0,.95),inset 0 1px 0 rgba(255,255,255,.05)}
+.page .contact .vc-front::before{content:;position:absolute;left:clamp(28px,4vw,50px);top:clamp(28px,4vw,50px);width:44px;height:1px;background:#c2ab89}
+.page .contact .vc-top,.page .contact .vc-bottom{position:relative;z-index:1;max-width:58%}
+.page .contact .vc-kicker{display:block;font-family:var(--head);font-weight:800;font-size:clamp(30px,4.4vw,48px);letter-spacing:-.03em;line-height:1.05;color:#f5f3ee}
+.page .contact .vc-title{margin:14px 0 0;font-size:clamp(15px,1.8vw,19px);line-height:1.5;letter-spacing:.01em;color:#8f8a80}
+.page .contact .vc-bottom{display:grid;gap:6px}
+.page .contact .vc-mail{font-family:var(--sans);font-size:clamp(16px,1.9vw,21px);font-weight:600;color:#f5f3ee;text-decoration:none;word-break:break-all;justify-self:start;border-bottom:1px solid transparent;transition:border-color .3s}
+.page .contact .vc-mail:hover{border-color:#c2ab89}
+.page .contact .vc-line{font-size:clamp(14px,1.6vw,17px);color:#a9a398;line-height:1.5}
+.page .contact .vc-soc{list-style:none;margin:16px 0 0;padding:0;display:flex;gap:10px;flex-wrap:wrap}
+.page .contact .vc-soc a{display:grid;place-items:center;width:38px;height:38px;border-radius:9px;border:1px solid rgba(255,255,255,.14);color:#d9d3c7;transition:background .3s,color .3s,border-color .3s}
+.page .contact .vc-soc a:hover{background:#c2ab89;color:#0c0c0c;border-color:#c2ab89}
+.page .contact .vc-soc svg{width:18px;height:18px;display:block}
+.page .contact .vc-photo{position:absolute;right:clamp(8px,2.5vw,28px);bottom:0;height:88%;width:auto;z-index:0;pointer-events:none;user-select:none;filter:drop-shadow(0 10px 18px rgba(0,0,0,.6))}
+
+/* back: warm stone, quiet details */
+.page .contact .vc-back{transform:rotateY(180deg);background:linear-gradient(180deg,#ece7dc 0%,#e2dccf 100%);color:#1a1916;padding:clamp(28px,4vw,50px);display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 34px 60px -30px rgba(0,0,0,.95)}
+.page .contact .vc-back::before{content:;position:absolute;right:clamp(28px,4vw,50px);top:clamp(28px,4vw,50px);width:44px;height:1px;background:#8d7650}
+.page .contact .vc-eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#7a6b52}
+.page .contact .vc-dl{margin:0;display:grid;gap:18px}
+.page .contact .vc-dl>div{display:grid;gap:4px}
+.page .contact .vc-dl dt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#8a8373}
+.page .contact .vc-dl dd{margin:0;font-family:var(--head);font-weight:700;font-size:clamp(18px,2.2vw,24px);letter-spacing:-.02em;color:#1a1916}
+.page .contact .vc-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid rgba(26,25,22,.14);padding-top:18px}
+.page .contact .vc-stats>div{display:grid;gap:4px;padding:0 14px;border-left:1px solid rgba(26,25,22,.12)}
+.page .contact .vc-stats>div:first-child{padding-left:0;border-left:0}
+.page .contact .vc-stats b{font-family:var(--head);font-weight:800;font-size:clamp(24px,3vw,34px);line-height:1;letter-spacing:-.03em;color:#1a1916}
+.page .contact .vc-stats span{font-size:12px;line-height:1.35;color:#5d584d}
+
+.page .contact .vc-cta{margin-top:32px;justify-self:center}
+
+@media (max-width:520px){
+  .page .contact .vc-scene{aspect-ratio:1.2/1}
+  .page .contact .vc-photo{height:60%;right:4px}
+  .page .contact .vc-top,.page .contact .vc-bottom{max-width:64%}
+  .page .contact .vc-kicker{font-size:28px}
+  .page .contact .vc-mail{font-size:16px}
+  .page .contact .vc-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}
+  .page .contact .vc-stats>div:nth-child(odd){padding-left:0;border-left:0}
+}
+/* the card flip keeps its motion even where the site-wide reduced-motion rule (above) turns transitions off */
+.page .contact .vc-inner{transition:transform .9s cubic-bezier(.2,.7,.2,1)!important}
