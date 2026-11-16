@@ -782,3 +782,41 @@ h1,h2,h3,h4,h5{font-family:var(--head)}
   #about .sk:first-child{border-top:0}
   #about .sk ul{grid-template-columns:1fr;gap:7px}
 }
+
+/* Expanded résumé details, kept in the same quiet editorial system. */
+#about .about-extras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,6vw,84px);margin-top:clamp(58px,7vw,88px);padding-top:24px;border-top:1px solid var(--line)}
+#about .about-detail>.eyebrow,#about .books-wrap>.eyebrow{margin-bottom:14px;color:#a6a6a6;font-size:10px;letter-spacing:.16em}
+#about .about-detail-list{list-style:none;border-top:1px solid #292929}
+#about .about-detail-list li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:11px 0;border-bottom:1px solid #292929;color:#c8c8c8;font-size:13px;line-height:1.5}
+#about .about-detail-list li small{flex:0 0 auto;color:#888;font-size:11px;letter-spacing:.02em;text-transform:none}
+#about .scopus-link{display:flex;align-items:center;gap:8px;margin-top:18px;color:#bbb;font-size:12px;letter-spacing:.02em}
+#about .scopus-link span{color:#888}
+#about .scopus-link i{margin-left:auto;color:#777;font-style:normal;transition:transform .25s var(--ease)}
+#about .scopus-link:hover{color:#fff}#about .scopus-link:hover i{transform:translate(2px,-2px)}
+#about .about-research{grid-column:1/-1}
+#about .research-projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,56px)}
+#about .research-projects article{padding-top:14px;border-top:1px solid #292929}
+#about .research-projects h3{font-size:16px;line-height:1.35;font-weight:600}
+#about .research-projects p{margin-top:7px;color:#999;font-size:13px;line-height:1.6}
+#about .books-wrap{margin-top:clamp(58px,7vw,88px)}
+#about .books-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 28px}
+#about .book-item{padding-top:14px;border-top:1px solid #292929}
+#about .book-item h3{font-size:16px;line-height:1.3;font-weight:600}
+#about .book-item h3 a span{color:#777;font-size:12px;transition:color .2s}
+#about .book-item h3 a:hover span{color:#ddd}
+#about .book-item p{margin-top:6px;color:#888;font-size:12px;line-height:1.55}
+.sc-main h3 a{transition:color .2s ease}
+.sc-main h3 a:hover{color:#d4d4d4}
+@media (max-width:900px){
+  #about .books-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  #about .about-extras{gap:34px}
+}
+@media (max-width:620px){
+  #about .about-extras{grid-template-columns:1fr;gap:32px;margin-top:44px}
+  #about .about-research{grid-column:auto}
+  #about .research-projects{grid-template-columns:1fr;gap:18px}
+  #about .books-wrap{margin-top:48px}
+  #about .books-list{grid-template-columns:1fr;gap:16px}
+  #about .about-detail-list li{align-items:flex-start}
+  #about .about-detail-list li small{white-space:nowrap}
+}

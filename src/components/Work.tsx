@@ -38,7 +38,7 @@ export default function Work() {
                   <span className="sc-n">{w.n}</span>
                   <div className="sc-main">
                     <span className="sc-tag">{w.tag}<i /> {w.cat.split('·').slice(1).join('·').trim() || w.cat}</span>
-                    <h3>{w.title}</h3>
+                    <h3>{w.href ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title}</a> : w.title}</h3>
                     <p>{w.text}</p>
                   </div>
                   <span className="sc-th"><img src={IMG[w.tag]} alt="" loading="lazy" /><i>{w.year}</i></span>

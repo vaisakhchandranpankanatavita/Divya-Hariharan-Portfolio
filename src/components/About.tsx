@@ -1,4 +1,4 @@
-import { EDUCATION, SKILLS } from '../data'
+import { AFFILIATIONS, BOOKS, CERTIFICATIONS, EDUCATION, RESEARCH_PROJECTS, SCOPUS_AUTHOR_ID, SKILLS } from '../data'
 import SectionHead from './SectionHead'
 import Split from './Split'
 import Reveal from './Reveal'
@@ -31,6 +31,40 @@ export default function About() {
                 <div key={e.title}><h4>{e.title}</h4><time>{e.time}</time><p>{e.place}</p></div>
               ))}
             </Reveal>
+          </div>
+        </div>
+        <div className="about-extras">
+          <Reveal as="section" className="about-detail">
+            <p className="eyebrow">Certificates &amp; training</p>
+            <ul className="about-detail-list">
+              {CERTIFICATIONS.map(item => <li key={item.title}><span>{item.title}</span><small>{item.detail}</small></li>)}
+            </ul>
+          </Reveal>
+          <Reveal as="section" className="about-detail">
+            <p className="eyebrow">Professional affiliations</p>
+            <ul className="about-detail-list">
+              {AFFILIATIONS.map(item => <li key={item}><span>{item}</span></li>)}
+            </ul>
+            <a className="scopus-link" href={`https://www.scopus.com/authid/detail.uri?authorId=${SCOPUS_AUTHOR_ID}`} target="_blank" rel="noopener noreferrer">
+              Scopus Author ID <span>{SCOPUS_AUTHOR_ID}</span><i aria-hidden="true">↗</i>
+            </a>
+          </Reveal>
+          <Reveal as="section" className="about-detail about-research">
+            <p className="eyebrow">Research projects</p>
+            <div className="research-projects">
+              {RESEARCH_PROJECTS.map(project => <article key={project.title}><h3>{project.title}</h3><p>{project.detail}</p></article>)}
+            </div>
+          </Reveal>
+        </div>
+        <div className="books-wrap">
+          <Reveal as="p" className="eyebrow">Books &amp; anthologies</Reveal>
+          <div className="books-list">
+            {BOOKS.map(book => (
+              <article className="book-item" key={book.title}>
+                <h3>{book.href ? <a href={book.href} target="_blank" rel="noopener noreferrer">{book.title}<span aria-hidden="true"> ↗</span></a> : book.title}</h3>
+                <p>{book.detail}</p>
+              </article>
+            ))}
           </div>
         </div>
         <div className="skills-wrap">
