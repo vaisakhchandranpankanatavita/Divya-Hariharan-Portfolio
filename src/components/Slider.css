@@ -2,7 +2,7 @@
 
 .sl{margin-top:clamp(56px,9svh,96px)}
 .sl-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:clamp(20px,3svh,28px)}
-.sl-label{margin:0;font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.sl-label{margin:0;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
 .sl-nav{display:flex;gap:10px}
 
 .sl-btn{width:48px;height:48px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;transition:background .45s cubic-bezier(.16,1,.3,1),color .45s,border-color .45s,opacity .3s}

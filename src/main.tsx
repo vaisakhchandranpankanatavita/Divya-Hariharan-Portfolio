@@ -2,10 +2,11 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './styles.css'
-import { enableSmoothWheel } from './smoothScroll'
+import { enableBarAutoHide, enableSmoothWheel } from './smoothScroll'
 
 document.documentElement.classList.add('js')
 enableSmoothWheel()
+enableBarAutoHide()
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
 
 // Dark boot loader (markup + CSS live in index.html): keep it up briefly, then fade it out once the page is ready.

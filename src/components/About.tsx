@@ -5,6 +5,8 @@ import Split from './Split'
 import Reveal from './Reveal'
 import './About.css'
 
+const RESUME = `${import.meta.env.BASE_URL}resume.pdf`
+
 /** One collapsible topic: a map row (number, title, hint) that expands to its details. */
 function Topic({ n, title, hint, open, onToggle, children }: { n: string; title: string; hint: string; open: boolean; onToggle: () => void; children: ReactNode }) {
   return (
@@ -23,7 +25,8 @@ function Topic({ n, title, hint, open, onToggle, children }: { n: string; title:
 }
 
 export default function About() {
-  const [open, setOpen] = useState<Record<string, boolean>>({ education: true })
+  // every topic starts collapsed; the reader opens the ones they want
+  const [open, setOpen] = useState<Record<string, boolean>>({})
   // Accordion: opening one topic closes the others (clicking the open one closes it).
   const toggle = (k: string) => setOpen(s => (s[k] ? {} : { [k]: true }))
 
@@ -123,6 +126,9 @@ export default function About() {
                 <p><span>Languages</span>{LANGUAGES.join(' · ')}</p>
                 <p><span>Interests</span>{INTERESTS.join(' · ')}</p>
               </Reveal>
+              <a className="about-resume-link" href={RESUME} download="Divya-Hariharan-Resume.pdf">
+                Resume <span aria-hidden="true">↓</span>
+              </a>
             </div>
           </aside>
 

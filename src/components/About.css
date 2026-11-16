@@ -77,6 +77,39 @@
   .about-page .ab-rows span{grid-column:1}
   .about-page .ab-grid,.about-page .ab-grid--skills{grid-template-columns:1fr}
 }
+/* calmer colour: one bright tone for titles and answers, one soft tone for supporting text,
+   one faint tone for numbers and hints, and the accent only on the open state and the Resume link */
+.about-page{
+  --ab-ink: var(--ink);
+  --ab-soft: color-mix(in srgb, var(--mute) 85%, transparent);
+  --ab-faint: color-mix(in srgb, var(--mute) 55%, transparent);
+  --ab-accent: var(--accent);
+}
+.about-page .ab-intro .ab-text,
+.about-page .ab-facts p,
+.about-page .ab-rows span,
+.about-page .ab-grid p,
+.about-page .ab-link{color:var(--ab-soft)}
+.about-page .ab-facts span,
+.about-page .ab-num,
+.about-page .ab-hint,
+.about-page .ab-rows time{color:var(--ab-faint)}
+.about-page .ab-facts span{color:var(--ab-accent)}
+.about-page .ab-num{letter-spacing:.06em}
+.about-page .ab-rows b,
+.about-page .ab-grid h3,
+.about-page .ab-title{color:var(--ab-ink)}
+.about-page .ab-topic.is-open .ab-title{color:var(--ab-ink)}
+.about-page .ab-topic.is-open .ab-num{color:var(--ab-accent)}
+.about-page .ab-topic.is-open .ab-plus{background:var(--ab-accent);border-color:var(--ab-accent)}
+.about-page .ab-topic.is-open .ab-plus::before,.about-page .ab-topic.is-open .ab-plus::after{background:var(--bg)}
+.about-page .ab-head .ab-plus{border-color:color-mix(in srgb, var(--mute) 35%, transparent)}
+.about-page .ab-head:hover .ab-plus{border-color:var(--ab-accent)}
+.about-page .ab-topic{border-bottom-color:color-mix(in srgb, var(--line) 80%, transparent)}
+.about-page .ab-rows li{border-bottom-color:color-mix(in srgb, var(--line) 70%, transparent)}
+.about-page .ab-rows,.about-page .ab-facts,.about-page .ab-map{border-top-color:color-mix(in srgb, var(--line) 80%, transparent)}
+.about-page .ab-facts p{border-bottom-color:color-mix(in srgb, var(--line) 70%, transparent)}
+
 @media (prefers-reduced-motion:reduce){
   .about-page .ab-panel,.about-page .ab-title,.about-page .ab-plus,.about-page .ab-plus::before,.about-page .ab-plus::after{transition:none}
 }

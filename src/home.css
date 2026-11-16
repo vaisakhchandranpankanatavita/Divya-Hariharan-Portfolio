@@ -65,17 +65,30 @@
   .home{
     --pad-x: 22px;
     --pad-top: clamp(20px, 3svh, 32px);
-    --pad-bottom: 100px;
-    --name: min(9vw, 14svh);
+    --pad-top: clamp(10px, 2.6svh, 32px);
+    --pad-bottom: calc(110px + env(safe-area-inset-bottom));
+    /* every phone-size text value scales with both the width (vw) and the height (svh) */
+    --name: clamp(20px, min(9vw, 8.5svh), 64px);
+    --lead: clamp(11px, min(4.2vw, 2.5svh), 22px);
+    --title: clamp(10px, min(3.3vw, 2vw, 2svh), 17px);
+    --small: clamp(9px, min(2.9vw, 1.6svh), 13px);
+    --label: clamp(8.5px, min(2.4vw, 1.3svh), 11px);
+    --num: clamp(16px, min(6.6vw, 4.2svh), 48px);
     --photo: min(38svh, 70vw);
   }
-  .home-stage{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;align-items:end;gap:12px 16px;margin-top:clamp(8px,1.5svh,14px)}
-  .home-fig{grid-column:1/-1;grid-row:1;height:auto;min-height:0}
+  /* name: bold typographic lock-up, two stacked lines filling the width, sized by width and height */
+  .home-name{font-weight:800;font-size:clamp(30px,min(13vw,8svh),96px);line-height:.86;letter-spacing:-.05em;white-space:normal}
+  .home-name .ln{display:block;white-space:nowrap}
+  .home-name .ln+.ln{margin-left:0;color:var(--ink)}
+  .home-stage{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;align-items:stretch;gap:8px 16px;margin-top:clamp(6px,1.2svh,12px);flex:1 1 0% !important;height:0 !important;min-height:0 !important}
+  /* the portrait takes all the height the text does not need, so there is no gap above it */
+  .home-fig{grid-column:1/-1;grid-row:1;height:auto;min-height:0;align-self:stretch;align-items:stretch}
+  .home-fig img{height:100%;max-height:100%}
   .home-left{grid-column:1;grid-row:2}
   .home-right{grid-column:2;grid-row:2}
   .home-stats{gap:6px}
-  .home-stat{padding-top:6px}
-  .home-col{gap:8px}
+  .home-stat{padding-top:clamp(3px,0.9svh,8px)}
+  .home-col{gap:clamp(4px,1svh,8px)}
   /* keep the phone homepage on one screen: the content ends above the nav, so nothing needs to scroll */
   html.home,html.home body,#smooth.is-home,.home{height:100dvh !important;overflow:hidden !important}
 }
