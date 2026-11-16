@@ -22,33 +22,37 @@ export default function Work() {
   return (
     <section id="work" className="showcase">
       <div className="wrap">
-        <SectionHead title={<>Research that <em>travels.</em></>} />
+        <SectionHead watermark="Research" title={<>Research that <em>travels.</em></>} />
 
-        <div className="sc-filter" role="tablist" aria-label="Filter work">
-          {FILTERS.map(x => (
-            <button key={x} role="tab" aria-selected={f === x} className={f === x ? 'on' : ''} onClick={() => setF(x)}>{x}</button>
-          ))}
-        </div>
+        <div className="wk">
+          <aside className="wk-side">
+            <div className="sc-filter" role="tablist" aria-label="Filter work" aria-orientation="vertical">
+              {FILTERS.map(x => (
+                <button key={x} role="tab" aria-selected={f === x} className={f === x ? 'on' : ''} onClick={() => setF(x)}>{x}</button>
+              ))}
+            </div>
+          </aside>
 
-        <ol className="sc-list">
-          {items.map(w => (
-            <li key={w.title} className={f === 'All' || f === w.tag ? '' : 'dim'}>
-              <Reveal as="article" className="sc-row" >
-                <div className="sc-in" onPointerMove={onMove} tabIndex={0}>
-                  <span className="sc-n">{w.n}</span>
-                  <div className="sc-main">
-                    <span className="sc-tag">{w.tag}<i /> {w.cat.split('·').slice(1).join('·').trim() || w.cat}</span>
-                    <h3>{w.href ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title}</a> : w.title}</h3>
-                    <p>{w.text}</p>
+          <ol className="sc-list wk-main">
+            {items.map(w => (
+              <li key={w.title} className={f === 'All' || f === w.tag ? '' : 'dim'}>
+                <Reveal as="article" className="sc-row" >
+                  <div className="sc-in" onPointerMove={onMove} tabIndex={0}>
+                    <span className="sc-n">{w.n}</span>
+                    <div className="sc-main">
+                      <span className="sc-tag">{w.tag}<i /> {w.cat.split('·').slice(1).join('·').trim() || w.cat}</span>
+                      <h3>{w.href ? <a href={w.href} target="_blank" rel="noopener noreferrer">{w.title}</a> : w.title}</h3>
+                      <p>{w.text}</p>
+                    </div>
+                    <span className="sc-th"><img src={IMG[w.tag]} alt="" loading="lazy" /><i>{w.year}</i></span>
+                    <span className="sc-yr">{w.year}</span>
+                    <span className="sc-go" aria-hidden="true">↗</span>
                   </div>
-                  <span className="sc-th"><img src={IMG[w.tag]} alt="" loading="lazy" /><i>{w.year}</i></span>
-                  <span className="sc-yr">{w.year}</span>
-                  <span className="sc-go" aria-hidden="true">↗</span>
-                </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
     </section>
   )
